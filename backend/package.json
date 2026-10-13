@@ -4,9 +4,9 @@
   "description": "Backend API for Meme'd Campaign Payout Tracker",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "node api.js && tsc",
+    "start": "node api.js && node dist/index.js",
+    "dev": "node api.js && ts-node-dev --respawn --transpile-only src/index.ts",
     "test": "jest --runInBand --detectOpenHandles",
     "test:watch": "jest --watch"
   },
