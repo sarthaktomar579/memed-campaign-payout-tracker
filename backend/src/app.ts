@@ -29,6 +29,21 @@ app.use(async (_req, _res, next) => {
   }
 });
 
+// Root Route
+app.get('/', (_req: Request, res: Response) => {
+  res.json({
+    service: "Meme'd Campaign Payout Tracker API",
+    status: 'online',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      campaigns: '/api/campaigns',
+      submissions: '/api/submissions',
+      creators: '/api/creators'
+    }
+  });
+});
+
 // Health Check
 app.get('/health', (_req: Request, res: Response) => {
   res.json({
