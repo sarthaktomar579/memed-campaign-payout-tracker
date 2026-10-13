@@ -6,6 +6,7 @@ import campaignRoutes from './routes/campaignRoutes';
 import submissionRoutes from './routes/submissionRoutes';
 import creatorRoutes from './routes/creatorRoutes';
 import { errorHandler } from './middlewares/errorHandler';
+import { connectDB } from './config/db';
 
 dotenv.config();
 
@@ -17,6 +18,16 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+
+// Auto-connect database for serverless requests
+app.use(async (_req, _res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Health Check
 app.get('/health', (_req: Request, res: Response) => {
