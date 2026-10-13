@@ -100,7 +100,7 @@ export function detectViewSpike(
   if (jump > threshold) {
     return {
       isSpike: true,
-      reason: `Suspicious view spike detected: +${jump.toLocaleString()} views in single update`
+      reason: `Suspicious view spike detected: +${jump.toLocaleString('en-US')} views in single update`
     };
   }
   return { isSpike: false };
