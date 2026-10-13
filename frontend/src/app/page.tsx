@@ -88,39 +88,34 @@ export default function Home() {
           <div className="flex items-center space-x-3">
             {currentUser ? (
               <>
-                {/* Evaluator Quick Role Switcher */}
-                <div className="hidden sm:flex items-center bg-slate-800/60 p-1 rounded-xl border border-slate-700/60 text-xs">
-                  <button
-                    onClick={() => handleSwitchRole('brand')}
-                    className={`px-3 py-1 rounded-lg font-semibold transition ${
-                      currentUser.role === 'brand'
-                        ? 'bg-indigo-600 text-white shadow'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    🏢 Brand Portal
-                  </button>
-                  <button
-                    onClick={() => handleSwitchRole('creator')}
-                    className={`px-3 py-1 rounded-lg font-semibold transition ${
-                      currentUser.role === 'creator'
-                        ? 'bg-emerald-600 text-white shadow'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    🎨 Creator Portal
-                  </button>
+                {/* Current Active User Profile Badge */}
+                <div className="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700/60">
+                  <span className="text-xs">
+                    {currentUser.role === 'brand' ? '🏢' : '🎨'}
+                  </span>
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-white leading-tight">{currentUser.name}</p>
+                    <p className="text-[10px] text-slate-400 capitalize leading-none font-medium">
+                      {currentUser.role} Account
+                    </p>
+                  </div>
                 </div>
 
-                {/* Profile Pill */}
-                <div className="text-right hidden md:block">
-                  <p className="text-xs font-semibold text-white">{currentUser.name}</p>
-                  <p className="text-[10px] text-slate-400 capitalize">{currentUser.role}</p>
-                </div>
+                {/* Explicit Evaluator Quick Switch (Clearly labeled as Demo switch) */}
+                <button
+                  onClick={() => handleSwitchRole(currentUser.role === 'brand' ? 'creator' : 'brand')}
+                  className="hidden sm:flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold px-3 py-2 rounded-xl border border-slate-700/60 transition"
+                  title="Switch to the other role using a demo account"
+                >
+                  <span>⚡</span>
+                  <span>
+                    {currentUser.role === 'brand' ? 'Switch to Creator Demo' : 'Switch to Brand Demo'}
+                  </span>
+                </button>
 
                 <button
                   onClick={handleLogout}
-                  className="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium px-3 py-1.5 rounded-xl border border-slate-700/60 transition"
+                  className="bg-slate-800 hover:bg-rose-950/40 text-slate-300 hover:text-rose-300 text-xs font-semibold px-3 py-2 rounded-xl border border-slate-700/60 hover:border-rose-800/60 transition"
                 >
                   Logout
                 </button>
@@ -155,22 +150,12 @@ export default function Home() {
               </div>
 
               {/* Mobile Role Switcher */}
-              <div className="sm:hidden flex items-center bg-slate-800 p-1 rounded-lg text-xs">
+              <div className="sm:hidden">
                 <button
-                  onClick={() => handleSwitchRole('brand')}
-                  className={`px-2 py-1 rounded font-semibold ${
-                    currentUser.role === 'brand' ? 'bg-indigo-600 text-white' : 'text-slate-400'
-                  }`}
+                  onClick={() => handleSwitchRole(currentUser.role === 'brand' ? 'creator' : 'brand')}
+                  className="bg-slate-800 text-slate-300 text-[11px] px-2.5 py-1.5 rounded-lg border border-slate-700/60 font-semibold"
                 >
-                  Brand
-                </button>
-                <button
-                  onClick={() => handleSwitchRole('creator')}
-                  className={`px-2 py-1 rounded font-semibold ${
-                    currentUser.role === 'creator' ? 'bg-emerald-600 text-white' : 'text-slate-400'
-                  }`}
-                >
-                  Creator
+                  ⚡ {currentUser.role === 'brand' ? 'Creator Demo' : 'Brand Demo'}
                 </button>
               </div>
             </div>
