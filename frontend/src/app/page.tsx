@@ -193,8 +193,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 py-6 text-center text-xs text-slate-400">
-        Meme’d Campaign Payout Tracker &bull; SDE-I Engineering Assessment for WLDD
+      <footer className="border-t border-slate-900/60 py-6 text-center text-xs text-slate-500">
+        &copy; {new Date().getFullYear()} Meme’d. Empowering creators and brands worldwide.
       </footer>
 
       {/* Auth Modal */}
